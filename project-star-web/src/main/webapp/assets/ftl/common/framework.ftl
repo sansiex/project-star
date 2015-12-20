@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <head>
-    <title>Hoek</title>
+    <title>星闻头条</title>
 
     <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-theme.min.css">

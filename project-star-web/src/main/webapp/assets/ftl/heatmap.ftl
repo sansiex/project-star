@@ -1,7 +1,7 @@
 <#macro lib>
 <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-table.css">
 <link rel="stylesheet" href="/assets/css/select2/select2.min.css">
-<link rel="stylesheet" href="/assets/css/heatmap.css">
+<link rel="stylesheet" href="/assets/css/abstract.css">
 
 <#--<script src="/assets/js/lib/bootstrap/bootstrap-table.min.js"></script>-->
 <#--<script src="/assets/js/lib/bootstrap/bootstrap-table-zh-CN.min.js"></script>-->
@@ -52,8 +52,8 @@
 </#macro>
 
 <#macro js>
-<script src="/assets/js/service/heatmap.js"></script>
-<script src="/assets/js/controller/heatmap.js"></script>
+<script src="/assets/js/service/abstract.js"></script>
+<script src="/assets/js/controller/abstract.js"></script>
 <script src="/assets/js/lib/hcharts/highcharts.js"></script>
 <script src="/assets/js/lib/hcharts/highcharts-3d.js"></script>
 </#macro>

@@ -17,7 +17,7 @@
     <dependencies>
         <!--Internal Module-->
         <dependency>
-            <groupId>com.dianping</groupId>
+            <groupId>com.star</groupId>
             <artifactId>project-star-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
