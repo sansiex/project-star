@@ -15,5 +15,6 @@
     <context:component-scan base-package="com.star.people"/>
 
     <beans:import resource="classpath*:spring/applicationContext-freemarker.xml" ></beans:import>
+    <beans:import resource="classpath*:spring/applicationContext-mybatis.xml" ></beans:import>
 
 </beans>

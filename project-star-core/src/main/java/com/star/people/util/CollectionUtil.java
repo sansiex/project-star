@@ -101,6 +101,20 @@ public class CollectionUtil {
         return map(col, mapper, container);
     }
 
+    public static <T1, T2, E extends Collection<T2>> E map(T1[] col, Mapper<T1, T2> mapper, E container) {
+        for (T1 item : col) {
+            container.add(mapper.map(item));
+        }
+        return container;
+    }
+
+    public static <T1, T2> T2[] map(T1[] col, Mapper<T1, T2> mapper, T2[] container) {
+        for (int i = 0; i < col.length; i++) {
+            container[i] = mapper.map(col[i]);
+        }
+        return container;
+    }
+
     public interface Predictor<T> {
         boolean predict(T item);
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry
+            location="C:/Users/Administrator/.m2/repository/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar"/>
+
+    <!--<context id="MysqlTables" targetRuntime="MyBatis3" ="hierarchical">-->
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+        <!--connectionURL="jdbc:mysql://10.1.77.22:3306/DpDim?autoReconnect=true&amp;autoReconnectForPools=true&amp;useUnicode=true&amp;characterEncoding=utf-8"-->
+        <!--userId="DpDim" password="dp!@YpGnCIU0W">-->
+        <!--</jdbcConnection>-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/peopletimes?autoReconnect=true&amp;autoReconnectForPools=true&amp;useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root" password="root">
+        </jdbcConnection>
+
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.star.people.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <!--<property name="trimStrings" value="true" />-->
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.star.people.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.star.people.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="pt_article" domainObjectName="Article">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="status" javaType="com.star.people.enums.ArticleStatus"
+                    typeHandler="com.star.people.mapper.handler.StatusHandler" />
+        </table>
+    </context>
+</generatorConfiguration>

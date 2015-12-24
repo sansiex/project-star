@@ -21,9 +21,18 @@ public class ViewController {
 
     @RequestMapping(value = "/abstract/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView view(@PathVariable("id") String id){
+    public ModelAndView abstractView(@PathVariable("id") String id){
         logger.info("id:{}", id);
         ModelAndView view = new ModelAndView("content/abstract");
+        view.addObject("articleId", id);
+        return view;
+    }
+
+    @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView article(@PathVariable("id") String id){
+        logger.info("id:{}", id);
+        ModelAndView view = new ModelAndView("content/article");
         view.addObject("articleId", id);
         return view;
     }

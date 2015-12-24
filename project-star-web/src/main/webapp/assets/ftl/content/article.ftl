@@ -19,23 +19,18 @@
     <script src="/assets/js/lib/angular/angular-resource.min.js"></script>
 </head>
 <body ng-app="app" style="">
-<div ng-controller="abstract">
+<div ng-controller="article">
     <div class="container" style="">
-        <img class="background-img" style="" src="/resource/img/a.jpg" />
-    </div>
-    <div class="text-mask">
-        <div class="linear-gradient-mask"></div>
-        <div class="transparent-mask">
-        <span class="abstract-text">
-            这是一段总共一百四十字的摘要这是一段大概一百四十字的摘要这是一段大概一百四十字的摘要这是一段大概一百四十字的摘要这是一段大概一百四十字的摘要这是一段大概一百四十字的摘要这是一段大概一百四十字的摘要这是一段大概一百四十字的摘要这是一段大概一百四十字的摘要这是一段大概一百四十字的摘要
-        </span>
-        </div>
+这是一篇文章这是一篇文章这是一篇文章这是一篇文章这是一篇文章
+        这是一篇文章这是一篇文章这是一篇文章这是一篇文章这是一篇文章
+        这是一篇文章这是一篇文章这是一篇文章这是一篇文章这是一篇文章
+        这是一篇文章这是一篇文章这是一篇文章这是一篇文章这是一篇文章
     </div>
 </div>
 
 <script src="/assets/js/common/app.js"></script>
 <script src="/assets/js/service/restful.js"></script>
-<script src="/assets/js/service/abstract.js"></script>
-<script src="/assets/js/controller/abstract.js"></script>
+<script src="/assets/js/service/article.js"></script>
+<script src="/assets/js/controller/article.js"></script>
 </body>
 </html>
