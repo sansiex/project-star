@@ -6,6 +6,7 @@ import com.star.people.exception.ServiceException;
 import com.star.people.mapper.ArticleMapper;
 import com.star.people.mapper.SqlMapper;
 import com.star.people.model.Article;
+import com.star.people.model.ArticleContentVO;
 import com.star.people.model.ArticleInfoVO;
 import com.star.people.util.ObjectUtil;
 import org.slf4j.Logger;
@@ -51,6 +52,22 @@ public class ArticleService {
             return null;
         }
         ArticleInfoVO vo = new ArticleInfoVO();
+        ObjectUtil.fromMap(list.get(0), vo);
+        return vo;
+    }
+
+    public ArticleContentVO getArticleContent(int id){
+        logger.info("id:{}", id);
+        String[] fields = ObjectUtil.getFields(ArticleContentVO.class);
+        StringBuilder sb = new StringBuilder("select ");
+        Joiner.on(",").appendTo(sb, fields);
+        sb.append(" from pt_article where id=");
+        sb.append(id);
+        List<Map> list = sqlMapper.selectBySql(sb.toString());
+        if (list.size()<1) {
+            return null;
+        }
+        ArticleContentVO vo = new ArticleContentVO();
         ObjectUtil.fromMap(list.get(0), vo);
         return vo;
     }

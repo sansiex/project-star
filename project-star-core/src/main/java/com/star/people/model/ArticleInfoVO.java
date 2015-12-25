@@ -21,8 +21,6 @@ public class ArticleInfoVO {
     private Integer prior;
     private Date publishtime;
 
-    private static String[] fields;
-
     public int getId() {
         return id;
     }

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/assets/css/common.css">
-    <link rel="stylesheet" href="/assets/css/abstract.css">
+    <link rel="stylesheet" href="/assets/css/article.css">
 
     <script src="/assets/js/lib/jquery/jquery.min.js"></script>
     <script src="/assets/js/lib/bootstrap/bootstrap.min.js"></script>
@@ -21,10 +21,13 @@
 <body ng-app="app" style="">
 <div ng-controller="article">
     <div class="container" style="">
-这是一篇文章这是一篇文章这是一篇文章这是一篇文章这是一篇文章
-        这是一篇文章这是一篇文章这是一篇文章这是一篇文章这是一篇文章
-        这是一篇文章这是一篇文章这是一篇文章这是一篇文章这是一篇文章
-        这是一篇文章这是一篇文章这是一篇文章这是一篇文章这是一篇文章
+        <h1 class="content-title">标题</h1>
+        <br>
+        <a href="${articleContent.linkurl}"><span class="link-text">深度阅读</span></a>
+        <hr>
+        <div class="contenttext">
+        ${articleContent.content}
+        </div>
     </div>
 </div>
 

@@ -19,7 +19,7 @@ public enum ArticleStatus {
     }
 
     public static ArticleStatus valueOf(int type){
-        return ArticleStatus.values()[type-1];
+        return ArticleStatus.values()[type];
     }
 
     public String toString(){
