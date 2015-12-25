@@ -1,10 +1,8 @@
 package com.star.people.service;
 
 import com.google.common.base.Joiner;
-import com.google.gson.Gson;
 import com.star.people.exception.ServiceException;
 import com.star.people.mapper.ArticleMapper;
-import com.star.people.mapper.SqlMapper;
 import com.star.people.model.Article;
 import com.star.people.model.ArticleContentVO;
 import com.star.people.model.ArticleInfoVO;
@@ -14,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.StringBufferInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +26,7 @@ public class ArticleService {
     ArticleMapper articleMapper;
 
     @Autowired
-    SqlMapper sqlMapper;
+    com.star.people.mapper.sqlMapper sqlMapper;
 
     public Article getArticle(int id) throws ServiceException {
         logger.info("id:{}",id);

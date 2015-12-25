@@ -33,7 +33,7 @@
     </bean>
 
     <bean id="sqlMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-    <property name="mapperInterface" value="com.star.people.mapper.SqlMapper" />
+    <property name="mapperInterface" value="com.star.people.mapper.sqlMapper" />
     <property name="sqlSessionFactory" ref="sessionFactory" />
 </bean>
 
