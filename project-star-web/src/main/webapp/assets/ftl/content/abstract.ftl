@@ -1,3 +1,5 @@
+<#import "/content/abstract-content.ftl" as content>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <meta charset="utf-8">
@@ -20,19 +22,7 @@
 </head>
 <body ng-app="app" style="">
 <div ng-controller="abstract">
-    <div class="container" style="">
-        <a href="/content/article/${articleInfo.id}">
-            <img class="background-img" style="" src="${articleInfo.imageurl}" />
-        </a>
-    </div>
-    <div class="text-mask">
-        <div class="linear-gradient-mask"></div>
-        <div class="transparent-mask">
-        <span class="abstract-text">
-            ${articleInfo.abstracttext}
-        </span>
-        </div>
-    </div>
+<@content.abstractcontent />
 </div>
 
 <script src="/assets/js/common/app.js"></script>

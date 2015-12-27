@@ -16,5 +16,6 @@
 
     <beans:import resource="classpath*:spring/applicationContext-freemarker.xml" ></beans:import>
     <beans:import resource="classpath*:spring/applicationContext-mybatis.xml" ></beans:import>
+    <beans:import resource="classpath*:spring/applicationContext-mvc.xml" ></beans:import>
 
 </beans>

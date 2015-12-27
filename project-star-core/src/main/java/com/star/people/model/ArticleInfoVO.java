@@ -1,5 +1,6 @@
 package com.star.people.model;
 
+import com.google.common.base.Strings;
 import com.star.people.enums.ArticleStatus;
 import com.star.people.util.CollectionUtil;
 
@@ -9,7 +10,7 @@ import java.util.Date;
 /**
  * Created by zuhai.jiang on 2015/12/23.
  */
-public class ArticleInfoVO {
+public class ArticleInfoVO extends BaseEntity {
 
     private int id;
     private String title;
@@ -20,6 +21,19 @@ public class ArticleInfoVO {
     private int status;
     private Integer prior;
     private Date publishtime;
+
+    public void setArticle(Article article){
+        article.setId(id);
+        article.setTitle(title);
+        article.setAbstracttext(abstracttext);
+        if (!Strings.isNullOrEmpty(imageurl)) {
+            article.setImageurl(imageurl);
+        }
+        article.setType(type);
+        article.setStatus(ArticleStatus.valueOf(status));
+        article.setPrior(prior);
+        article.setPublishtime(publishtime);
+    }
 
     public int getId() {
         return id;

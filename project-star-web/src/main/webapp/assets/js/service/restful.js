@@ -128,7 +128,45 @@ app.factory('restful', function ($q, $resource) {
         }
     }
 
-    svc.getPromise = function (data){
+    svc.getFormData=function (formId) {
+        var form = document.getElementById(formId);
+        var data=new FormData();
+        var tagElements = form.getElementsByTagName('input');
+        for (var j = 0; j < tagElements.length; j++){
+            var ele=tagElements[j];
+            if (ele.type == 'file') {
+                data.append(ele.name, ele.files[0]);
+            } else {
+                data.append(ele.name, ele.value);
+            }
+        }
+        return data;
+    }
+
+    svc.submitForm = function (url, formId, options){
+        var deferred = $q.defer();
+        var params = svc.getFormData(formId);
+        $.ajax({
+            url:url,
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            async: true,
+            contentType: false,
+            processData: false,
+            data: params,
+            cache: false,
+            success: function(data){
+                deferred.resolve(data.result);
+            },
+            error: function(error){
+
+            }
+        });
+
+        return deferred.promise;
+    }
+
+    svc.getPromise = function (data) {
         var defer = $q.defer();
         var promise = defer.promise();
         defer.resolve(data);

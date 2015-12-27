@@ -1,5 +1,6 @@
 package com.star.people.model;
 
+import com.google.gson.annotations.Expose;
 import com.star.people.enums.ArticleStatus;
 
 /**
@@ -7,6 +8,7 @@ import com.star.people.enums.ArticleStatus;
  */
 public class ArticleContentVO {
     private int id;
+    @Expose(serialize = false)
     private String content;
     private String linkurl;
     private int status;

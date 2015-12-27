@@ -30,7 +30,7 @@ public class ResourceController {
     ImgService imgService;
 
     @RequestMapping(value = "/img/{id}.{ext}", method = RequestMethod.GET)
-    public ModelAndView view(HttpServletResponse response
+    public ModelAndView getImg(HttpServletResponse response
             , @PathVariable("id") String id
             , @PathVariable("ext") String ext) throws IOException {
         String name = id+"."+ext;

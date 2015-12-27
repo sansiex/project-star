@@ -43,5 +43,9 @@
             <columnOverride column="status" javaType="com.star.people.enums.ArticleStatus"
                     typeHandler="com.star.people.mapper.handler.StatusHandler" />
         </table>
+
+        <table tableName="pt_admin_login_info" domainObjectName="AdminLoginInfo">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

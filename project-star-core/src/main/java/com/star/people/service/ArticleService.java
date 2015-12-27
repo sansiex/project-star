@@ -1,8 +1,10 @@
 package com.star.people.service;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Strings;
 import com.star.people.exception.ServiceException;
 import com.star.people.mapper.ArticleMapper;
+import com.star.people.mapper.SqlMapper;
 import com.star.people.model.Article;
 import com.star.people.model.ArticleContentVO;
 import com.star.people.model.ArticleInfoVO;
@@ -12,8 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Created by zuhai.jiang on 2015/12/20.
@@ -26,7 +31,7 @@ public class ArticleService {
     ArticleMapper articleMapper;
 
     @Autowired
-    com.star.people.mapper.sqlMapper sqlMapper;
+    SqlMapper sqlMapper;
 
     public Article getArticle(int id) throws ServiceException {
         logger.info("id:{}",id);
@@ -71,11 +76,26 @@ public class ArticleService {
 
     public Article createArticle(Article rec) throws ServiceException {
         logger.info("rec:{}",rec.toString());
+        rec.setAddtime(new Date());
         int r = articleMapper.insert(rec);
         if (r < 1) {
             throw new ServiceException("创建文章失败:"+rec.toString());
         }
         return rec;
+    }
+
+    public boolean saveArticleInfo(ArticleInfoVO vo, String creator) throws ServiceException {
+        logger.info("articleInfo:{}", vo.toString());
+        Article article = articleMapper.selectByPrimaryKey(vo.getId());
+        if (article == null) {
+            article = new Article();
+            vo.setArticle(article);
+            createArticle(article);
+        } else {
+            vo.setArticle(article);
+            updateArticle(article);
+        }
+        return true;
     }
 
     public Article updateArticle(Article rec) throws ServiceException {
@@ -101,5 +121,10 @@ public class ArticleService {
         Article rec = getArticle(id);
         rec.setStatus(0);
         return updateArticle(rec);
+    }
+
+    public String getAbstractImgName(String user, String ext){
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
+        return "abstract_"+user.replace('.','_')+df.format(new Date())+"."+ext;
     }
 }
