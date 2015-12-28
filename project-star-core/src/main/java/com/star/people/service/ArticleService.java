@@ -2,6 +2,7 @@ package com.star.people.service;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
+import com.star.people.enums.ArticleStatus;
 import com.star.people.exception.ServiceException;
 import com.star.people.mapper.ArticleMapper;
 import com.star.people.mapper.SqlMapper;
@@ -32,6 +33,9 @@ public class ArticleService {
 
     @Autowired
     SqlMapper sqlMapper;
+
+    public static final String THEME_ARTICLE_CONTENT = "articlecontent";
+    public static final String THEME_ABSTRACT = "abstract";
 
     public Article getArticle(int id) throws ServiceException {
         logger.info("id:{}",id);
@@ -77,6 +81,20 @@ public class ArticleService {
     public Article createArticle(Article rec) throws ServiceException {
         logger.info("rec:{}",rec.toString());
         rec.setAddtime(new Date());
+        int r = articleMapper.insertSelective(rec);
+        if (r < 1) {
+            throw new ServiceException("创建文章失败:"+rec.toString());
+        }
+        return rec;
+    }
+
+    public Article createArticle(String creator) throws ServiceException {
+        Article rec = new Article();
+        rec.setStatus(ArticleStatus.AVAILABLE);
+        rec.setType(0);
+        rec.setCreator(creator);
+        rec.setAddtime(new Date());
+        logger.info("create article:{}", rec.toString());
         int r = articleMapper.insert(rec);
         if (r < 1) {
             throw new ServiceException("创建文章失败:"+rec.toString());
@@ -98,9 +116,21 @@ public class ArticleService {
         return true;
     }
 
+    public boolean saveArticleContent(ArticleContentVO vo, String creator) throws ServiceException {
+        logger.info("articleContent:{}", vo.toString());
+        Article article = articleMapper.selectByPrimaryKey(vo.getId());
+        if (article == null) {
+            throw new ServiceException("文章不存在-id:"+vo.getId());
+        } else {
+            vo.setArticle(article);
+            updateArticle(article);
+        }
+        return true;
+    }
+
     public Article updateArticle(Article rec) throws ServiceException {
         logger.info("rec:{}",rec.toString());
-        int r = articleMapper.updateByPrimaryKey(rec);
+        int r = articleMapper.updateByPrimaryKeySelective(rec);
         if (r < 1) {
             throw new ServiceException("更新文章失败:"+rec.toString());
         }
@@ -119,12 +149,8 @@ public class ArticleService {
     public Article disableArticle(int id) throws ServiceException {
         logger.info("id:{}", id);
         Article rec = getArticle(id);
-        rec.setStatus(0);
+        rec.setStatus(ArticleStatus.DISABLED);
         return updateArticle(rec);
     }
 
-    public String getAbstractImgName(String user, String ext){
-        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
-        return "abstract_"+user.replace('.','_')+df.format(new Date())+"."+ext;
-    }
 }

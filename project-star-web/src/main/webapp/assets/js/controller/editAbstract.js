@@ -3,9 +3,11 @@
 app.controller('editAbstract', function ($scope, $q, restful, editAbstractService) {
     $scope.save = function(){
         var formId = 'edit';
-        var id = getId();
         editAbstractService.submitForm(formId).then(function(data){
-            console.log(data);
+            var article = data.result;
+            $scope.article = article;
+            setId(article.id);
+            alert('保存成功');
         });
     }
 
@@ -16,12 +18,13 @@ app.controller('editAbstract', function ($scope, $q, restful, editAbstractServic
         });
     }
 
-    function getId(){
-        var i = location.pathname.lastIndexOf('/');
-        return location.pathname.substring(i+1);
+    function setId(id){
+        var form = document.getElementById('edit');
+        form.id.value=id+"";
     }
 
     function init(){
+        $scope.article = null;
         $scope.img={};
     }
 

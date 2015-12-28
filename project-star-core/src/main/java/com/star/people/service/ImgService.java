@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -39,6 +41,11 @@ public class ImgService {
         logger.info("save img:{}", path);
         file.transferTo(img);
         return getUrl(name);
+    }
+
+    public String getImgName(String user, String ext, String theme) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
+        return theme+"_"+user.replace('.','_')+df.format(new Date())+"."+ext;
     }
 
     public String getUrl(String name){

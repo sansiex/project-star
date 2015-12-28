@@ -27,13 +27,18 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
+    <bean id="sqlMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.star.people.mapper.SqlMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
     <bean id="articleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.star.people.mapper.ArticleMapper" />
         <property name="sqlSessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="sqlMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.star.people.mapper.SqlMapper" />
+    <bean id="adminLoginInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.star.people.mapper.AdminLoginInfoMapper" />
         <property name="sqlSessionFactory" ref="sessionFactory" />
     </bean>
 

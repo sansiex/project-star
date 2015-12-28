@@ -140,10 +140,31 @@ app.factory('restful', function ($q, $resource) {
                 data.append(ele.name, ele.value);
             }
         }
+        var tagElements = form.getElementsByTagName('textarea');
+        for (var j = 0; j < tagElements.length; j++){
+            var ele=tagElements[j];
+            data[ele.name] = ele.value;
+        }
         return data;
     }
 
-    svc.submitForm = function (url, formId, options){
+    svc.getFormDataMap=function (formId) {
+        var form = document.getElementById(formId);
+        var data={};
+        var tagElements = form.getElementsByTagName('input');
+        for (var j = 0; j < tagElements.length; j++){
+            var ele=tagElements[j];
+            data[ele.name] = ele.value;
+        }
+        var tagElements = form.getElementsByTagName('textarea');
+        for (var j = 0; j < tagElements.length; j++){
+            var ele=tagElements[j];
+            data[ele.name] = ele.value;
+        }
+        return data;
+    }
+
+    svc.submitMultipartForm = function (url, formId, options){
         var deferred = $q.defer();
         var params = svc.getFormData(formId);
         $.ajax({
@@ -164,6 +185,11 @@ app.factory('restful', function ($q, $resource) {
         });
 
         return deferred.promise;
+    }
+
+    svc.submitForm = function (url, formId, options){
+        var params = svc.getFormDataMap(formId);
+        return svc.post(url, params);
     }
 
     svc.getPromise = function (data) {

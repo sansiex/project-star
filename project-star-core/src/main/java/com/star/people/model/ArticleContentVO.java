@@ -12,6 +12,15 @@ public class ArticleContentVO {
     private String content;
     private String linkurl;
     private int status;
+    private String contentTitle;
+    private String author;
+
+    public void setArticle(Article article){
+        article.setAuthor(author);
+        article.setContent(content);
+        article.setContenttitle(contentTitle);
+        article.setLinkurl(linkurl);
+    }
 
     public int getId() {
         return id;
@@ -43,5 +52,21 @@ public class ArticleContentVO {
 
     public void setStatus(ArticleStatus status) {
         this.status = status.getValue();
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getContentTitle() {
+        return contentTitle;
+    }
+
+    public void setContentTitle(String contentTitle) {
+        this.contentTitle = contentTitle;
     }
 }

@@ -3,16 +3,16 @@
  */
 "use strict"
 
-app.factory('editAbstractService', function (restful) {
+app.factory('editArticleContentService', function (restful) {
     var svc = {};
 
     svc.submitForm = function(formId){
-        var url = '/admin/saveAbstract';
+        var url = '/admin/saveArticleContent';
         return restful.submitForm(url, formId, {});
     }
 
     svc.uploadImg = function(formId){
-        var url = '/admin/saveAbstractImg';
+        var url = '/admin/saveArticleContentImg';
         return restful.submitMultipartForm(url, formId, {});
     }
 

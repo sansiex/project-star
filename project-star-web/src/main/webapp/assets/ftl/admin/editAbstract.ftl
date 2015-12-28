@@ -30,13 +30,15 @@
                 <div class="form-group">
                     <h1>编辑摘要内容</h1>
                     <form id="edit">
-                        <input type="hidden" name="id" value="${articleInfo.id}">
+                        <label for="id">文章ID：{{article.id}}</label>
+                        <input type="hidden" name="id" value="${articleInfo.id!-1}">
+                        <br>
                         <label for="image">标题</label>
-                        <input type="text" class="form-control" name="title" id="title" placeholder="标题">
+                        <input type="text" class="form-control" value="${articleInfo.title!''}" name="title" id="title" placeholder="标题">
                         <label for="image">摘要内容</label>
-                        <input type="text" class="form-control" name="abstracttext" id="abstracttext" placeholder="摘要">
+                        <textarea class="form-control" name="abstracttext" id="abstracttext" >${articleInfo.abstracttext!''}</textarea>
                         <label for="image">背景图片URL</label>
-                        <input type="text" class="form-control" name="imageurl" id="imageurl" placeholder="图片URL">
+                        <input type="text" class="form-control" value="${articleInfo.imageurl!''}" name="imageurl" id="imageurl" placeholder="图片URL">
                         <button ng-click="save()" class="btn btn-primary">保存</button>
                     </form>
                     <hr>

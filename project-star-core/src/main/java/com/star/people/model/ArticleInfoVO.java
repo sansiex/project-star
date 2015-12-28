@@ -1,6 +1,7 @@
 package com.star.people.model;
 
 import com.google.common.base.Strings;
+import com.google.gson.annotations.Expose;
 import com.star.people.enums.ArticleStatus;
 import com.star.people.util.CollectionUtil;
 
@@ -14,6 +15,7 @@ public class ArticleInfoVO extends BaseEntity {
 
     private int id;
     private String title;
+    @Expose(serialize = false)
     private String abstracttext;
     private String imageurl;
     private int type;
