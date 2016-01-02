@@ -1,9 +1,52 @@
-.container {
-    width: 100%
-}
-
 body {
     height:100%
+}
+
+@media (min-width: 1100px) {
+    .text-mask {
+        width: 750px;
+    }
+
+    .left-area {
+        left: 0px;
+        text-align: center;
+        position: fixed;
+        height: 100%;
+        width: 40%;
+        top: 0px;
+    }
+
+    .right-area {
+        right: 0px;
+        text-align: center;
+        position: fixed;
+        height: 100%;
+        width: 40%;
+        top: 0px;
+    }
+
+    .arrow {
+        background-color: #000000;
+        top: 45%;
+        cursor: pointer;
+        height: 150px;
+        width: 150px;
+        margin: auto;
+    }
+}
+
+@media (max-width: 1099px) {
+    .text-mask {
+        width: 100%;
+    }
+
+    .left-area {
+        display: none;
+    }
+
+    .right-area {
+        display: none;
+    }
 }
 
 /*@media (min-width: 768px) {*/

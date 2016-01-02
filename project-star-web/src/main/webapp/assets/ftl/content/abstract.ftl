@@ -22,7 +22,14 @@
 </head>
 <body ng-app="app" style="">
 <div ng-controller="abstract">
-<@content.abstractcontent />
+    <div class="left-area" ng-show="beforeArticle!=null">
+        <i class="arrow glyphicon glyphicon-arrow-left" ng-click="toBefore()"></i>
+    </div>
+    <div class="right-area" ng-show="afterArticle!=null">
+        <i class="arrow glyphicon glyphicon-arrow-right" ng-click="toAfter()"></i>
+    </div>
+
+    <@content.abstractcontent />
 </div>
 
 <script src="/assets/js/common/app.js"></script>

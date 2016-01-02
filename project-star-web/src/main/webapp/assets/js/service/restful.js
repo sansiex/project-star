@@ -134,13 +134,18 @@ app.factory('restful', function ($q, $resource) {
         var tagElements = form.getElementsByTagName('input');
         for (var j = 0; j < tagElements.length; j++){
             var ele=tagElements[j];
-            if (ele.type == 'file') {
+            if (ele.type == 'file' ) {
                 data.append(ele.name, ele.files[0]);
             } else {
                 data.append(ele.name, ele.value);
             }
         }
         var tagElements = form.getElementsByTagName('textarea');
+        for (var j = 0; j < tagElements.length; j++){
+            var ele=tagElements[j];
+            data[ele.name] = ele.value;
+        }
+        var tagElements = form.getElementsByTagName('select');
         for (var j = 0; j < tagElements.length; j++){
             var ele=tagElements[j];
             data[ele.name] = ele.value;
@@ -157,6 +162,11 @@ app.factory('restful', function ($q, $resource) {
             data[ele.name] = ele.value;
         }
         var tagElements = form.getElementsByTagName('textarea');
+        for (var j = 0; j < tagElements.length; j++){
+            var ele=tagElements[j];
+            data[ele.name] = ele.value;
+        }
+        var tagElements = form.getElementsByTagName('select');
         for (var j = 0; j < tagElements.length; j++){
             var ele=tagElements[j];
             data[ele.name] = ele.value;

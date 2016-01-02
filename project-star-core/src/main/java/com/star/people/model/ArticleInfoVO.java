@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import com.google.gson.annotations.Expose;
 import com.star.people.enums.ArticleStatus;
 import com.star.people.util.CollectionUtil;
+import com.star.people.util.DateUtil;
 
 import java.lang.reflect.Field;
 import java.util.Date;
@@ -22,7 +23,7 @@ public class ArticleInfoVO extends BaseEntity {
     private String creator;
     private int status;
     private Integer prior;
-    private Date publishtime;
+    private String publishtime;
 
     public void setArticle(Article article){
         article.setId(id);
@@ -34,7 +35,7 @@ public class ArticleInfoVO extends BaseEntity {
         article.setType(type);
         article.setStatus(ArticleStatus.valueOf(status));
         article.setPrior(prior);
-        article.setPublishtime(publishtime);
+        article.setPublishtime(DateUtil.toDate(publishtime, DateUtil.DATETIME_FORMAT));
     }
 
     public int getId() {
@@ -102,10 +103,10 @@ public class ArticleInfoVO extends BaseEntity {
     }
 
     public Date getPublishtime() {
-        return publishtime;
+        return DateUtil.toDate(publishtime, DateUtil.DATETIME_FORMAT);
     }
 
     public void setPublishtime(Date publishtime) {
-        this.publishtime = publishtime;
+        this.publishtime = DateUtil.formatDatetime(publishtime);
     }
 }

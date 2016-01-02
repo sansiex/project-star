@@ -58,6 +58,18 @@
     </dependencies>
 
     <build>
+        <!--<sourceDirectory>src/main/java</sourceDirectory>-->
+        <!--<resources>-->
+            <!--&lt;!&ndash; 控制资源文件的拷贝 &ndash;&gt;-->
+            <!--<resource>-->
+                <!--<directory>src/main/resources</directory>-->
+                <!--<targetPath>${project.build.directory}/</targetPath>-->
+                <!--<includes>-->
+                    <!--<include>**/*.xml</include>-->
+                <!--</includes>-->
+            <!--</resource>-->
+        <!--</resources>-->
+
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>

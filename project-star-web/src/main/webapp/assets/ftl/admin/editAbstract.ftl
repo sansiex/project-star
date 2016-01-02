@@ -12,12 +12,14 @@
 
     <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/assets/css/common.css">
     <link rel="stylesheet" href="/assets/css/editAbstract.css">
 
     <script src="/assets/js/lib/jquery/jquery.min.js"></script>
     <#--<script src="/assets/js/lib/jquery/jquery.form.js"></script>-->
     <script src="/assets/js/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/js/lib/bootstrap/bootstrap-datetimepicker.min.js"></script>
     <script src="/assets/js/lib/angular/angular.min.js"></script>
     <script src="/assets/js/lib/angular/angular-resource.min.js"></script>
     <script src="/assets/js/common/common.js"></script>
@@ -31,14 +33,22 @@
                     <h1>编辑摘要内容</h1>
                     <form id="edit">
                         <label for="id">文章ID：{{article.id}}</label>
+                        <label>查看发布页面：<a href="/content/abstract/{{article.id}}">/content/abstract/{{article.id}}</a></label>
                         <input type="hidden" name="id" value="${articleInfo.id!-1}">
                         <br>
-                        <label for="image">标题</label>
+                        <label for="title">标题</label>
                         <input type="text" class="form-control" value="${articleInfo.title!''}" name="title" id="title" placeholder="标题">
-                        <label for="image">摘要内容</label>
+                        <label for="publishtime">发布日期</label>
+                        <input type="text" class="form-control" value="${articleInfo.publishtime?string('yyyy-MM-dd HH:mm:ss')!''}" name="publishtime" id="publishtime" placeholder="发布时间">
+                        <label for="abstracttext">摘要内容</label>
                         <textarea class="form-control" name="abstracttext" id="abstracttext" >${articleInfo.abstracttext!''}</textarea>
-                        <label for="image">背景图片URL</label>
+                        <label for="imageurl">背景图片URL</label>
                         <input type="text" class="form-control" value="${articleInfo.imageurl!''}" name="imageurl" id="imageurl" placeholder="图片URL">
+                        <label for="status">文章状态</label>
+                        <select name="status" id="status">
+                            <option value="1" <#if articleInfo.status == '1'>selected</#if>>隐藏</option>
+                            <option value="2" <#if articleInfo.status == '2'>selected</#if>>可见</option>
+                        </select>
                         <button ng-click="save()" class="btn btn-primary">保存</button>
                     </form>
                     <hr>

@@ -25,6 +25,7 @@ public class ImgService {
 
     @PostConstruct
     private void init(){
+        logger.info("img directory:"+IMG_DIR);
     }
 
     public String getImgPath(String relativePath){

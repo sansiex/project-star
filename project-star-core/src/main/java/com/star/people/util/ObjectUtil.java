@@ -1,6 +1,7 @@
 package com.star.people.util;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -11,6 +12,24 @@ public class ObjectUtil {
     public static <T> void fromMap(Map<String, Object> map, T obj){
         for (Map.Entry<String, Object> ent:map.entrySet()) {
             String key = ent.getKey();
+            try {
+                Field field = obj.getClass().getDeclaredField(key);
+                field.setAccessible(true);
+                field.set(obj, ent.getValue());
+            } catch (NoSuchFieldException e) {
+                continue;
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static <T> void fromMap(Map<String, Object> map, T obj, Collection<String> ignore){
+        for (Map.Entry<String, Object> ent:map.entrySet()) {
+            String key = ent.getKey();
+            if (ignore.contains(key)) {
+                continue;
+            }
             try {
                 Field field = obj.getClass().getDeclaredField(key);
                 field.setAccessible(true);

@@ -22,6 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zuhai.jiang on 2015/12/26.
@@ -37,6 +41,8 @@ public class AdminController {
 
     @Autowired
     ImgService imgService;
+
+    private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @RequestMapping(value = "/abstract", method = RequestMethod.GET)
     @ResponseBody
@@ -79,7 +85,7 @@ public class AdminController {
     @RequestMapping(value = "/saveAbstract", method = RequestMethod.POST)
     @ResponseBody
     public Response<ArticleInfoVO> saveAbstract(HttpServletRequest req
-            , Integer id, String title, String abstracttext, String imageurl) {
+            , Integer id, String title, String abstracttext, String imageurl, String publishtime, Integer status) {
         logger.info("id:{}, title:{}", id, title);
         Response<ArticleInfoVO> resp = new Response<>(null);
         if (id == null || id<0) {
@@ -100,6 +106,10 @@ public class AdminController {
         info.setTitle(title);
         info.setAbstracttext(abstracttext);
         info.setImageurl(imageurl);
+
+        Date pt = df.parse(publishtime,  new ParsePosition(0));
+        info.setPublishtime(pt);
+        info.setStatus(ArticleStatus.valueOf(status));
         String user=getUserName(req);
         try {
             articleService.saveArticleInfo(info, user);
@@ -111,6 +121,20 @@ public class AdminController {
             resp.setResultMessage(e.getMessage());
             return resp;
         }
+    }
+
+    @RequestMapping(value = "/updateArticleStatus", method = RequestMethod.POST)
+    @ResponseBody
+    public Response<Boolean> updateArticleStatus(HttpServletRequest req
+            ,Integer id, Integer status) {
+        logger.info("id:{}, status:{}", id, status);
+        Response<Boolean> resp = new Response<>(true);
+        boolean ret = articleService.updateArticleStatus(id, ArticleStatus.valueOf(status));
+        if (!ret) {
+            resp.setResult(false);
+            resp.setResultMessage("更新文章状态失败。");
+        }
+        return resp;
     }
 
     @RequestMapping(value = "/saveArticleContent", method = RequestMethod.POST)

@@ -26,6 +26,9 @@ app.controller('editAbstract', function ($scope, $q, restful, editAbstractServic
     function init(){
         $scope.article = null;
         $scope.img={};
+        $('#publishtime').datetimepicker({
+            format:'yyyy-mm-dd hh:ii:ss'
+        });
     }
 
     init();

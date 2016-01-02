@@ -2,7 +2,6 @@
 <style>
     .text-mask {
         display: block;
-        /*width: 100%;*/
         height: auto;
         position: fixed;
         bottom: 0;
@@ -51,20 +50,80 @@
     }
 </style>
 
+<script>
+    $(function() {
+        var startX, startY, endX, endY;
+        var down = false;
+        function touchStart(event) {
+            var touch = event.touches[0];
+            startY = touch.pageY;
+            startX = touch.pageX;
+        }
+        function touchMove(event) {
+            console.log('move');
+            var touch = event.touches[0];
+            //endY = (startY - touch.pageY);
+            endX = touch.pageX;
+        }
+        function touchEnd(end) {
+            $("#bgimg").hide();
+            if ((startX - endX) > 300) {
+                $("#afterbgimg").show();
+            } else if ((startX - endX) < -300) {
+                $("#beforebgimg").show();
+            }
+        }
+        function mouseStart(event) {
+            down = true;
+            console.log('start');
+            startY = event.pageY;
+            startX = event.pageX;
+        }
+        function mouseMove(event) {
+            if (!down) {
+                return;
+            }
+            console.log('move');
+            //endY = (startY - touch.pageY);
+            endX = event.pageX;
+        }
+        function mouseEnd(end) {
+            down = false;
+            console.log('start');
+            $("#bgimg").hide();
+            if ((startX - endX) > 300) {
+                $("#afterbgimg").show();
+            } else if ((startX - endX) < -300) {
+                $("#beforebgimg").show();
+            }
+        }
+        document.getElementById("bgimglink").addEventListener("touchstart", touchStart, false);
+        document.getElementById("bgimglink").addEventListener("touchmove", touchMove, false);
+        document.getElementById("bgimglink").addEventListener("touchend", touchEnd, false);
+        document.getElementById("bgimglink").addEventListener("mousedown", mouseStart, false);
+        document.getElementById("bgimglink").addEventListener("move", mouseMove, false);
+        document.getElementById("bgimglink").addEventListener("mouseup", mouseEnd, false);
+    })
+</script>
+
 <div class="container" style="">
-    <a href="/content/article/${articleInfo.id}">
-        <img class="background-img" style="" src="${articleInfo.imageurl!''}" />
-    </a>
-    <div class="text-mask">
-        <div class="linear-gradient-mask"></div>
-        <div class="transparent-mask">
+    <div class="swiper-wrapper">
+        <div id="bgimglink" ng-click="viewArticle()">
+            <img ng-show="beforeArticle!=null" id="beforebgimg" class="background-img" style="display:none" src="{{beforeArticle.imageurl}}" />
+            <img id="bgimg" class="background-img" style="" src="${articleInfo.imageurl!''}" />
+            <img ng-show="afterArticle!=null" id="afterbgimg" class="background-img" style="display:none" src="{{afterArticle.imageurl}}" />
+        </div>
+        <div class="text-mask">
+            <div class="linear-gradient-mask"></div>
+            <div class="transparent-mask">
         <span class="abstract-title">
         ${articleInfo.title!''}
         </span>
-            <br>
+                <br>
         <span class="abstract-text">
         ${articleInfo.abstracttext!''}
         </span>
+            </div>
         </div>
     </div>
 </div>

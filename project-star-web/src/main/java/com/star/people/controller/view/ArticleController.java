@@ -1,5 +1,6 @@
 package com.star.people.controller.view;
 
+import com.star.people.dto.Response;
 import com.star.people.enums.ArticleStatus;
 import com.star.people.model.ArticleContentVO;
 import com.star.people.model.ArticleInfoVO;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 
 /**
  * Created by zuhai.jiang on 2015/12/9.
@@ -26,6 +29,20 @@ public class ArticleController {
 
     @Autowired
     ArticleService articleService;
+
+    @RequestMapping(value = "/abstract", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView recentAbstractView(){
+        logger.info("");
+        ModelAndView view = new ModelAndView("content/abstract");
+        ArticleInfoVO info = articleService.getRecentArticleInfo();
+        if (info!=null && info.getStatus() == ArticleStatus.AVAILABLE) {
+            view.addObject("articleInfo", info);
+            return view;
+        }
+//        return new ModelAndView(ErrorController.URL_MISS_PAGE);
+        return ErrorController.MISS_PAGE;
+    }
 
     @RequestMapping(value = "/abstract/{id}", method = RequestMethod.GET)
     @ResponseBody
