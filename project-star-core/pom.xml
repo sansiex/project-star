@@ -152,6 +152,7 @@
                 <directory>src/main/resources/</directory>
                 <includes>
                     <include>spring/*.xml</include>
+                    <include>config/config.properties</include>
                 </includes>
             </resource>
         </resources>

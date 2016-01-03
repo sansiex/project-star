@@ -11,14 +11,14 @@
         </property>
         <property name="url">
             <value>
-                jdbc:mysql://127.0.0.1:3306/peopletimes?autoReconnect=true&amp;autoReconnectForPools=true&amp;useUnicode=true&amp;characterEncoding=utf-8
+                jdbc:mysql://${db.peopletimes.host}:${db.peopletimes.port}/peopletimes?autoReconnect=true&amp;autoReconnectForPools=true&amp;useUnicode=true&amp;characterEncoding=utf-8
             </value>
         </property>
         <property name="username">
-            <value>peopletimes</value>
+            <value>${db.peopletimes.username}</value>
         </property>
         <property name="password">
-            <value>guzhi10yi2016</value>
+            <value>${db.peopletimes.password}</value>
         </property>
     </bean>
 

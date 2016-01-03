@@ -1,5 +1,6 @@
 package com.star.people.service;
 
+import com.star.people.util.ConfigUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class ImgService {
     private Logger logger = LoggerFactory.getLogger(ImgService.class);
 
-    private final static String IMG_DIR = System.getenv("IMG_DIR");
+    private final static String IMG_DIR = ConfigUtil.getProperty("img.dir");
     private final static String IMG_URL_PREFIX ="/resource/img/";
 
     @PostConstruct
