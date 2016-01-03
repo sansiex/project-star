@@ -26,12 +26,17 @@ body {
     }
 
     .arrow {
-        background-color: #000000;
         top: 45%;
         cursor: pointer;
         height: 150px;
         width: 150px;
+        line-height: 150px;
         margin: auto;
+        font-size: 80px;
+    }
+
+    .arrow:hover {
+        background-color: #dddddd;
     }
 }
 

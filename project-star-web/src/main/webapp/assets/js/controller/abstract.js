@@ -38,7 +38,7 @@ app.controller('abstract', function ($scope, $q, restful, abstractService) {
     }
 
     function getId(){
-        return $scope.article.id;
+        return id;
     }
 
     function init(){

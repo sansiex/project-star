@@ -42,6 +42,7 @@
     }
 
     .background-img {
+        cursor: pointer;
         display:block;
         height:100%;
         width: auto;
@@ -73,41 +74,16 @@
                 $("#beforebgimg").show();
             }
         }
-        function mouseStart(event) {
-            down = true;
-            console.log('start');
-            startY = event.pageY;
-            startX = event.pageX;
-        }
-        function mouseMove(event) {
-            if (!down) {
-                return;
-            }
-            console.log('move');
-            //endY = (startY - touch.pageY);
-            endX = event.pageX;
-        }
-        function mouseEnd(end) {
-            down = false;
-            console.log('start');
-            $("#bgimg").hide();
-            if ((startX - endX) > 300) {
-                $("#afterbgimg").show();
-            } else if ((startX - endX) < -300) {
-                $("#beforebgimg").show();
-            }
-        }
         document.getElementById("bgimglink").addEventListener("touchstart", touchStart, false);
         document.getElementById("bgimglink").addEventListener("touchmove", touchMove, false);
         document.getElementById("bgimglink").addEventListener("touchend", touchEnd, false);
-        document.getElementById("bgimglink").addEventListener("mousedown", mouseStart, false);
-        document.getElementById("bgimglink").addEventListener("move", mouseMove, false);
-        document.getElementById("bgimglink").addEventListener("mouseup", mouseEnd, false);
-    })
+
+    });
+    var id = ${articleInfo.id};
 </script>
 
 <div class="container" style="">
-    <div class="swiper-wrapper">
+    <div>
         <div id="bgimglink" ng-click="viewArticle()">
             <img ng-show="beforeArticle!=null" id="beforebgimg" class="background-img" style="display:none" src="{{beforeArticle.imageurl}}" />
             <img id="bgimg" class="background-img" style="" src="${articleInfo.imageurl!''}" />

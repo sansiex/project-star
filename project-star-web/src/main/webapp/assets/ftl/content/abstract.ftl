@@ -23,10 +23,10 @@
 <body ng-app="app" style="">
 <div ng-controller="abstract">
     <div class="left-area" ng-show="beforeArticle!=null">
-        <i class="arrow glyphicon glyphicon-arrow-left" ng-click="toBefore()"></i>
+        <i class="arrow glyphicon glyphicon-chevron-left" ng-click="toBefore()"></i>
     </div>
     <div class="right-area" ng-show="afterArticle!=null">
-        <i class="arrow glyphicon glyphicon-arrow-right" ng-click="toAfter()"></i>
+        <i class="arrow glyphicon glyphicon-chevron-right" ng-click="toAfter()"></i>
     </div>
 
     <@content.abstractcontent />
