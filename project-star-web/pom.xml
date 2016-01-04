@@ -75,7 +75,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <warName>${project.artifactId}-${env}-${project.version}</warName>
+                    <!--<warName>${project.artifactId}-${env}-${project.version}</warName>-->
+                    <warName>peopletimes</warName>
                 </configuration>
             </plugin>
         </plugins>

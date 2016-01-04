@@ -202,7 +202,10 @@ public class ArticleService {
     private ArticleInfoVO mapToArticleInfoVO(Map map){
         ArticleInfoVO vo = new ArticleInfoVO();
         ObjectUtil.fromMap(map, vo, Sets.newHashSet("publishtime"));
-        vo.setPublishtime((Date) map.get("publishtime"));
+        Date date = (Date) map.get("publishtime");
+        if (date!=null) {
+            vo.setPublishtime((Date) map.get("publishtime"));
+        }
         return vo;
     }
 }

@@ -51,6 +51,7 @@ public class AdminController {
         ModelAndView view = new ModelAndView("admin/editAbstract");
         ArticleInfoVO vo = new ArticleInfoVO();
         vo.setId(-1);
+        vo.setPublishtime(new Date());
         view.addObject("articleInfo", vo);
         return view;
     }

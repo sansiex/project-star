@@ -45,7 +45,7 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/content/abstract/1</location>
+        <location>/error/misspage</location>
     </error-page>
 
 </web-app>
