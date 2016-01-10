@@ -12,9 +12,10 @@
         width: 100%;
         height: auto;
         /*position: fixed;*/
-        bottom: 0;
+        /*bottom: 0;*/
         background-color: rgba(0, 0, 0, 0.5);
         padding: 10px;
+        cursor: pointer;
     }
 
     .linear-gradient-mask {
@@ -41,64 +42,71 @@
         font-size: 20px;
     }
 
+    .footer {
+        display: block;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        text-align: center;
+        background-color: black;
+        padding:10px;
+    }
+
+    .lastArticle {
+        float: left;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+
+    .nextArticle {
+        float: right;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+
+    .viewArticle {
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+
     .background-img {
         cursor: pointer;
-        display:block;
-        height:100%;
+        display: block;
+        height: 100%;
         width: auto;
         margin-left: auto;
         margin-right: auto;
     }
+
 </style>
-
 <script>
-    $(function() {
-        var startX, startY, endX, endY;
-        var down = false;
-        function touchStart(event) {
-            var touch = event.touches[0];
-            startY = touch.pageY;
-            startX = touch.pageX;
-        }
-        function touchMove(event) {
-            console.log('move');
-            var touch = event.touches[0];
-            //endY = (startY - touch.pageY);
-            endX = touch.pageX;
-        }
-        function touchEnd(end) {
-            $("#bgimg").hide();
-            if ((startX - endX) > 300) {
-                $("#afterbgimg").show();
-            } else if ((startX - endX) < -300) {
-                $("#beforebgimg").show();
-            }
-        }
-        document.getElementById("bgimglink").addEventListener("touchstart", touchStart, false);
-        document.getElementById("bgimglink").addEventListener("touchmove", touchMove, false);
-        document.getElementById("bgimglink").addEventListener("touchend", touchEnd, false);
-
-    });
     var id = ${articleInfo.id};
 </script>
 
 <div class="container" style="">
     <div>
         <div id="bgimglink" ng-click="viewArticle()">
-            <img ng-show="beforeArticle!=null" id="beforebgimg" class="background-img" style="display:none" src="{{beforeArticle.imageurl}}" />
-            <img id="bgimg" class="background-img" style="" src="${articleInfo.imageurl!''}" />
-            <img ng-show="afterArticle!=null" id="afterbgimg" class="background-img" style="display:none" src="{{afterArticle.imageurl}}" />
+            <img ng-show="beforeArticle!=null" id="beforebgimg" class="background-img" style="display:none"
+                 src="{{beforeArticle.imageurl}}"/>
+            <img id="bgimg" class="background-img" style="" src="${articleInfo.imageurl!''}"/>
+            <img ng-show="afterArticle!=null" id="afterbgimg" class="background-img" style="display:none"
+                 src="{{afterArticle.imageurl}}"/>
         </div>
         <div class="text-mask">
             <div class="linear-gradient-mask"></div>
-            <div class="transparent-mask">
-        <span class="abstract-title">
-        ${articleInfo.title!''}
-        </span>
+            <div class="transparent-mask" ng-click="showFooter = !showFooter">
+                <span class="abstract-title">
+                ${articleInfo.title!''}
+                </span>
                 <br>
-        <span class="abstract-text">
-        ${articleInfo.abstracttext!''}
-        </span>
+                <span class="abstract-text" ng-click="switchFoo">
+                ${articleInfo.abstracttext!''}
+                </span>
+            </div>
+            <div class="footer" ng-show="showFooter">
+                <span class="lastArticle" ng-show="beforeArticle!=null" ng-click="toBefore()">上一篇</span>
+                <span class="viewArticle" ng-click="viewArticle()">查看文章</span>
+                <span class="nextArticle" ng-show="afterArticle!=null" ng-click="toAfter()">下一篇</span>
             </div>
         </div>
     </div>

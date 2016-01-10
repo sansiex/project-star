@@ -44,6 +44,7 @@ app.controller('abstract', function ($scope, $q, restful, abstractService) {
     function init(){
         resize();
         getRecentAbstracts();
+        $scope.showFooter = false;
     }
 
     init();
