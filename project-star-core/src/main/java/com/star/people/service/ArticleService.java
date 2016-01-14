@@ -52,7 +52,7 @@ public class ArticleService {
         String[] fields = ObjectUtil.getFields(ArticleInfoVO.class);
         StringBuilder sb = new StringBuilder("select ");
         Joiner.on(",").appendTo(sb, fields);
-        sb.append(" from pt_article where id=");
+        sb.append(" from pt_article where status=2 and id=");
         sb.append(id);
         List<Map> list = sqlMapper.selectBySql(sb.toString());
         if (list.size()<1) {
@@ -67,7 +67,7 @@ public class ArticleService {
         String[] fields = ObjectUtil.getFields(ArticleInfoVO.class);
         StringBuilder sb = new StringBuilder("select ");
         Joiner.on(",").appendTo(sb, fields);
-        sb.append(" from pt_article order by publishtime desc limit 1");
+        sb.append(" from pt_article where status=2 order by publishtime desc limit 1");
         List<Map> list = sqlMapper.selectBySql(sb.toString());
         if (list.size()<1) {
             return null;
