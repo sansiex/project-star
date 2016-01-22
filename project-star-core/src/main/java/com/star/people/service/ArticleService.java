@@ -47,13 +47,16 @@ public class ArticleService {
         return rec;
     }
 
-    public ArticleInfoVO getArticleInfo(int id){
+    public ArticleInfoVO getArticleInfo(int id, boolean availableOnly){
         logger.info("id:{}", id);
         String[] fields = ObjectUtil.getFields(ArticleInfoVO.class);
         StringBuilder sb = new StringBuilder("select ");
         Joiner.on(",").appendTo(sb, fields);
-        sb.append(" from pt_article where status=2 and id=");
+        sb.append(" from pt_article where id=");
         sb.append(id);
+        if (availableOnly) {
+            sb.append(" and status=2");
+        }
         List<Map> list = sqlMapper.selectBySql(sb.toString());
         if (list.size()<1) {
             return null;
@@ -106,13 +109,16 @@ public class ArticleService {
         return ret;
     }
 
-    public ArticleContentVO getArticleContent(int id){
+    public ArticleContentVO getArticleContent(int id, boolean availableOnly){
         logger.info("id:{}", id);
         String[] fields = ObjectUtil.getFields(ArticleContentVO.class);
         StringBuilder sb = new StringBuilder("select ");
         Joiner.on(",").appendTo(sb, fields);
         sb.append(" from pt_article where id=");
         sb.append(id);
+        if (availableOnly) {
+            sb.append(" and status=2");
+        }
         List<Map> list = sqlMapper.selectBySql(sb.toString());
         if (list.size()<1) {
             return null;

@@ -30,7 +30,7 @@ public class AbstractController {
     public Response<ArticleInfoVO> getAbstract(int id){
         logger.info("id:{}", id);
         Response<ArticleInfoVO> resp = new Response<ArticleInfoVO>();
-        ArticleInfoVO info = articleService.getArticleInfo(id);
+        ArticleInfoVO info = articleService.getArticleInfo(id, true);
         resp.setResult(info);
 //        return new ModelAndView(ErrorController.URL_MISS_PAGE);
         return resp;

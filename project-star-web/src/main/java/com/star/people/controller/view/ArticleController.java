@@ -49,7 +49,7 @@ public class ArticleController {
     public ModelAndView abstractView(@PathVariable("id") int id){
         logger.info("id:{}", id);
         ModelAndView view = new ModelAndView("content/abstract");
-        ArticleInfoVO info = articleService.getArticleInfo(id);
+        ArticleInfoVO info = articleService.getArticleInfo(id, true);
         if (info!=null && info.getStatus() == ArticleStatus.AVAILABLE) {
             view.addObject("articleInfo", info);
             return view;
@@ -63,7 +63,7 @@ public class ArticleController {
     public ModelAndView article(@PathVariable("id") int id){
         logger.info("id:{}", id);
         ModelAndView view = new ModelAndView("content/article");
-        ArticleContentVO content = articleService.getArticleContent(id);
+        ArticleContentVO content = articleService.getArticleContent(id, true);
         if (content!=null && content.getStatus() == ArticleStatus.AVAILABLE) {
             view.addObject("articleContent", content);
             return view;

@@ -3,10 +3,12 @@ package com.star.people.model;
 import com.google.gson.annotations.Expose;
 import com.star.people.enums.ArticleStatus;
 
+import java.io.Serializable;
+
 /**
  * Created by zuhai.jiang on 2015/12/24.
  */
-public class ArticleContentVO {
+public class ArticleContentVO implements Serializable {
     private int id;
     @Expose(serialize = false)
     private String content;

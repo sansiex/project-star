@@ -2,8 +2,8 @@
 
 app.controller('editAbstract', function ($scope, $q, restful, editAbstractService) {
     $scope.save = function(){
-        var formId = 'edit';
-        editAbstractService.submitForm(formId).then(function(data){
+        var vo = $scope.vo;
+        editAbstractService.save(vo).then(function(data){
             var article = data.result;
             $scope.article = article;
             setId(article.id);
@@ -15,6 +15,7 @@ app.controller('editAbstract', function ($scope, $q, restful, editAbstractServic
         var formId = 'uploadimg';
         editAbstractService.uploadImg(formId).then(function(data){
             $scope.img.url = data;
+            document.forms.edit.imageurl = data;
         });
     }
 

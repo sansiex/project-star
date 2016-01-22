@@ -32,8 +32,8 @@
                 <div class="form-group">
                     <h1>编辑摘要内容</h1>
                     <form id="edit">
-                        <label for="id">文章ID：{{article.id}}</label>
-                        <label>查看发布页面：<a href="/content/abstract/{{article.id}}">/content/abstract/{{article.id}}</a></label>
+                        <label for="id">文章ID：{{articleInfo.id}}</label>
+                        <label>查看发布页面：<a href="/content/abstract/{{articleInfo.id}}">/content/abstract/{{articleInfo.id}}</a></label>
                         <input type="hidden" name="id" value="${articleInfo.id!-1}">
                         <br>
                         <label for="title">标题</label>
