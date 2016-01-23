@@ -132,21 +132,22 @@ public class AdminAccessController {
     @RequestMapping(value = "/saveArticle", method = RequestMethod.POST)
     @ResponseBody
     public Response<Boolean> saveArticleContent(HttpServletRequest req
-            , @ModelAttribute ArticleContentVO article) {
-        logger.info("id:{}, contentTitle:{}", article.getId(), article.getContentTitle());
+        ,int id,String content,String linkurl,int status,String contentTitle,String author
+        ) {
+        logger.info("id:{}, contentTitle:{}", id, contentTitle);
         Response<Boolean> resp = new Response<>(true);
-        ArticleContentVO vo = articleService.getArticleContent(article.getId(), false);
+        ArticleContentVO vo = articleService.getArticleContent(id, false);
         if (vo == null) {
             resp.setResult(false);
             resp.setResultMessage("请先创建文章摘要！");
             return resp;
         } else {
             vo = new ArticleContentVO();
-            vo.setId(article.getId());
-            vo.setContent(article.getContent());
-            vo.setLinkurl(article.getLinkurl());
-            vo.setAuthor(article.getAuthor());
-            vo.setContentTitle(article.getContentTitle());
+            vo.setId(id);
+            vo.setContent(content);
+            vo.setLinkurl(linkurl);
+            vo.setAuthor(author);
+            vo.setContentTitle(contentTitle);
             String user=getUserName(req);
             try {
                 articleService.saveArticleContent(vo, user);
