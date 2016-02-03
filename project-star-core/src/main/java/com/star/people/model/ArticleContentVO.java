@@ -9,6 +9,7 @@ import java.io.Serializable;
  * Created by zuhai.jiang on 2015/12/24.
  */
 public class ArticleContentVO implements Serializable {
+
     private int id;
     @Expose(serialize = false)
     private String content;
@@ -16,6 +17,9 @@ public class ArticleContentVO implements Serializable {
     private int status;
     private String contentTitle;
     private String author;
+
+    public ArticleContentVO() {
+    }
 
     public void setArticle(Article article){
         article.setAuthor(author);

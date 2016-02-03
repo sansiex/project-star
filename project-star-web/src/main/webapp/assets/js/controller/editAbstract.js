@@ -2,8 +2,7 @@
 
 app.controller('editAbstract', function ($scope, $q, restful, editAbstractService) {
     $scope.save = function(){
-        var vo = $scope.vo;
-        editAbstractService.save(vo).then(function(data){
+        editAbstractService.submitForm('edit').then(function(data){
             var article = data.result;
             $scope.article = article;
             setId(article.id);
