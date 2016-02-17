@@ -50,56 +50,36 @@ app.factory('restful', function ($q, $resource) {
     svc.post = function (url, params, options) {
         var options = options || {};
         var deferred = $q.defer();
-        var service = $resource(url, {}, {
-            save: {
-                method: 'POST',
-                isArray: false,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-                }
-            }
-        });
         var retry = 0;
         if (options.retry != null) {
             retry = options.retry;
         }
 
-        function sendRequest(service, params, options, deferred) {
-            var p = "method=post";
-            for (var k in params) {
-                p = p + "&" + k + "=" + params[k];
+        function success(data){
+            if (!data.success) {
+                deferred.reject(data);
             }
-            service.save(p, function (data) {
-                //service.save(params == null ? {} : params, function (data) {
-                if (data && data.success) {
-                    if (options.filter) {
-                        deferred.resolve(options.filter(data));
-                    } else {
-                        deferred.resolve(data);
-                    }
-                } else {
-                    if (retry > 0) {
-                        retry--;
-                        console.log('第' + (retry_times - retry) + '次重试。url:' + url);
-                        sendRequest(service, params, options, deferred);
-                    } else {
-                        if (options.failure) {
-                            options.failure({isSuccess: false, msg: data.msg || options.errorMsg});
-                        }
 
-                        if (options.errorMsg) {
-                            deferred.reject(options.errorMsg);
-                        } else if (data) {
-                            deferred.reject(data.msg);
-                        } else {
-                            deferred.reject('Failed to send post request to: ' + url);
-                        }
-                    }
+            if (options.filter) {
+                deferred.resolve(options.filter(data));
+            } else {
+                deferred.resolve(data);
+            }
+        }
+
+        function sendRequest(params, options) {
+            $.post(url, params, success, 'json').error(function(data){
+                if (options.errorMsg) {
+                    deferred.reject(options.errorMsg);
+                } else if (data) {
+                    deferred.reject(data.resultMessage);
+                } else {
+                    deferred.reject('Failed to send post request to: ' + url);
                 }
             });
         }
 
-        sendRequest(service, params, options, deferred);
+        sendRequest(params, options);
         return deferred.promise;
     }
 

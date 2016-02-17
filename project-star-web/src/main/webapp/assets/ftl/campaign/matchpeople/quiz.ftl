@@ -47,7 +47,7 @@
             <span ng-show="currentQuestionNum>0" ng-click="prevQuestion()" style="cursor: pointer;">上一题</span>
             <br>
             <span ng-show="currentQuestionNum<questions.length-1" ng-click="nextQuestion()" style="cursor: pointer;">下一题</span>
-            <span ng-show="currentQuestionNum==questions.length-1" style="cursor: pointer;">完成</span>
+            <span ng-show="currentQuestionNum==questions.length-1" ng-click="submitAnswers()" style="cursor: pointer;">完成</span>
         </div>
     </div>
 </div>

@@ -24,10 +24,12 @@
     </style>
 </head>
 <body ng-app="app" style="">
-<div ng-controller="result">
+<div>
     <div class="container" style="height: 300px;">
         <div>
             <span>测试结果</span>
+            <div>你最有可能成为：<span>${name}</span></div>
+            <span>${description}</span>
         </div>
     </div>
 </div>
